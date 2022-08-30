@@ -2,8 +2,18 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { connectDb } from './db/connectDb.js';
 
 dotenv.config();
+
+const currentEnvironment = process.env.NODE_ENV;
+
+const uri =
+  currentEnvironment === 'development'
+    ? process.env.MONGO_URI_DEV
+    : process.env.MONGO_URI_PROD;
+
+connectDb(uri);
 
 const app = express();
 
