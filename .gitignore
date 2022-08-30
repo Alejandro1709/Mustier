@@ -1,0 +1,11 @@
+server/node_modules
+client/node_modules
+
+server/.env
+client/.env
+
+client/build
+
+server/.DS_Store
+client/.DS_Store
+.DS_Store
