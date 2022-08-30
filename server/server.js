@@ -1,8 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
+import { connectDB } from './db/connectDb.js';
+import albumRoutes from './routes/albumRoutes.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { connectDB } from './db/connectDb.js';
 
 dotenv.config();
 
@@ -22,6 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
+
+app.use('/api/v1/albums', albumRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello API');
