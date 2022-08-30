@@ -23,6 +23,10 @@ app.use(cors());
 
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
+app.get('/', (req, res) => {
+  res.send('Hello API');
+});
+
 const port = process.env.PORT || 2030;
 
 app.listen(port, () =>
