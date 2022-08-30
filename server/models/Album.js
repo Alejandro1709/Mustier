@@ -18,6 +18,9 @@ const albumSchema = new mongoose.Schema(
     albumCover: {
       type: String,
     },
+    albumSlug: {
+      type: String,
+    },
     albumReleaseDate: {
       type: Date,
     },
