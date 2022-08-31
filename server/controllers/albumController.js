@@ -26,7 +26,6 @@ export const createAlbum = async (req, res) => {
   const newAlbum = {
     albumTitle,
     albumAuthor,
-    albumSlug: albumTitle.toLowerCase().replaceAll(' ', '-'),
     albumReleaseDate,
   };
 

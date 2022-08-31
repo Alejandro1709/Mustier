@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import slugify from 'slugify';
 
 const albumSchema = new mongoose.Schema(
   {
@@ -35,5 +36,12 @@ const albumSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+albumSchema.pre('save', function (next) {
+  if (!this.isModified('albumTitle')) {
+    next();
+  }
+  this.albumSlug = slugify(this.albumTitle);
+});
 
 export default mongoose.model('Album', albumSchema);
