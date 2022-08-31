@@ -63,7 +63,7 @@ export const updateAlbum = async (req, res) => {
 
 export const deleteAlbum = async (req, res) => {
   try {
-    const album = await Album.findByIdAndRemove(req.params.slug);
+    const album = await Album.findOneAndRemove(req.params.slug);
     res.status(200).json({ message: 'Album Deleted' });
   } catch (error) {
     console.error(error);
