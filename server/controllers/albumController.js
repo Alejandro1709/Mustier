@@ -2,7 +2,7 @@ import Album from '../models/Album.js';
 
 export const getAlbums = async (req, res) => {
   try {
-    const albums = await Album.find();
+    const albums = await Album.find().populate('albumSongs');
     res.status(200).json(albums);
   } catch (error) {
     console.error(error);
@@ -23,15 +23,13 @@ export const getAlbum = async (req, res) => {
 export const createAlbum = async (req, res) => {
   const { albumTitle, albumAuthor, albumReleaseDate } = req.body;
 
-  const newAlbum = {
-    albumTitle,
-    albumAuthor,
-    albumReleaseDate,
-  };
-
   try {
-    const album = await Album.create(newAlbum);
-    res.status(200).json(album);
+    const albumm = await Album.create({
+      albumTitle,
+      albumAuthor,
+      albumReleaseDate,
+    });
+    res.status(201).json(albumm);
   } catch (error) {
     console.error(error);
     res.status(500).json(error);
@@ -43,7 +41,7 @@ export const updateAlbum = async (req, res) => {
 
   try {
     const album = await Album.findOneAndUpdate(
-      req.params.slug,
+      { albumSlug: req.params.slug },
       {
         albumTitle,
         albumAuthor,
@@ -63,7 +61,7 @@ export const updateAlbum = async (req, res) => {
 
 export const deleteAlbum = async (req, res) => {
   try {
-    const album = await Album.findOneAndRemove(req.params.slug);
+    const album = await Album.findOneAndRemove({ albumSlug: req.params.slug });
     album.albumSongs = [];
     await album.save();
 

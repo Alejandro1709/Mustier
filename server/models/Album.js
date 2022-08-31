@@ -41,7 +41,8 @@ albumSchema.pre('save', function (next) {
   if (!this.isModified('albumTitle')) {
     next();
   }
-  this.albumSlug = slugify(this.albumTitle);
+  this.albumSlug = slugify(this.albumTitle).toLowerCase();
+  next();
 });
 
 export default mongoose.model('Album', albumSchema);

@@ -8,13 +8,13 @@ const songSchema = new mongoose.Schema(
       required: true,
       unique: true,
       trim: true,
-      minLength: 6,
+      minLength: 5,
     },
     songAuthor: {
       type: String,
       required: true,
       trim: true,
-      minLength: 6,
+      minLength: 5,
     },
     songReleaseDate: {
       type: Date,
@@ -41,7 +41,8 @@ songSchema.pre('save', function (next) {
   if (!this.isModified('songTitle')) {
     next();
   }
-  this.songSlug = slugify(this.songTitle);
+  this.songSlug = slugify(this.songTitle).toLowerCase();
+  next();
 });
 
 export default mongoose.model('Song', songSchema);

@@ -24,17 +24,15 @@ export const getSong = async (req, res) => {
 export const createSong = async (req, res) => {
   const { songTitle, songAuthor, songReleaseDate, songDuration } = req.body;
   try {
-    const album = await Album.findOne({ slug: req.params.slug });
+    const album = await Album.findOne({ albumSlug: req.params.slug });
 
-    const songParams = {
+    const song = await Song.create({
       songTitle,
       songAuthor,
       songReleaseDate,
       songDuration,
-      songAlbum: album,
-    };
-
-    const song = await Song.create(songParams);
+      songAlbum: album._id,
+    });
 
     album.albumSongs.push(song);
 
