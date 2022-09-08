@@ -1,0 +1,11 @@
+@import url('./global/layout.css');
+@import url('./global/colors.css');
+@import url('./global/reset.css');
+@import url('./global/typography.css');
+@import url('./global/utils.css');
+@import url('./components/Navbar.css');
+@import url('./components/Wrapper.css');
+@import url('./components/Alert.css');
+@import url('./components/HomePage.css');
+@import url('./components/AlbumList.css');
+@import url('./components/AlbumCard.css');
