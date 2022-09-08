@@ -1,19 +1,15 @@
 import React from 'react';
 
-function AlbumCard() {
+function AlbumCard({ album }) {
   return (
     <div className='list__item'>
       <div className='item__wrapper'>
         <div className='wrapper__cover'>
-          <img
-            src='https://pm1.narvii.com/6342/e48d28039aa2e1e360a0629afcf2c013f99d2435_hq.jpg'
-            alt='bf cover'
-            draggable={false}
-          />
+          <img src={album.imageSrc} alt='bf cover' draggable={false} />
         </div>
         <div className='wrapper__details'>
-          <h3>Blurryface - 2015</h3>
-          <p>Twenty One Pilots</p>
+          <h3>{album.title} - 2015</h3>
+          <p>{album.author}</p>
         </div>
         <div className='wrapper__actions'>See More</div>
       </div>

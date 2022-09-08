@@ -1,13 +1,12 @@
 import React from 'react';
 import AlbumCard from './AlbumCard';
 
-function AlbumList() {
+function AlbumList({ albums }) {
   return (
     <div className='homePage__list'>
-      <AlbumCard />
-      <AlbumCard />
-      <AlbumCard />
-      <AlbumCard />
+      {albums.map((album) => (
+        <AlbumCard key={album.id} album={album} />
+      ))}
     </div>
   );
 }
