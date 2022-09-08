@@ -37,6 +37,9 @@
 .primary-regular {
   color: var(--primary-regular);
 }
+.m-2 {
+  margin: 2rem;
+}
 .mb-1 {
   margin-bottom: 1rem;
 }

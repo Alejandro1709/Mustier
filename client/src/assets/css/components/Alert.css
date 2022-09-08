@@ -1,0 +1,22 @@
+.alert {
+  padding: 0.5rem;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  user-select: none;
+}
+
+.alert--success {
+  color: white;
+  background-color: var(--green-400);
+}
+
+.alert--loading {
+  color: white;
+  background-color: dodgerblue;
+}
+
+.alert--danger {
+  color: white;
+  background-color: var(--error);
+}

@@ -1,11 +1,16 @@
 import Navbar from './components/Navbar';
+import Wrapper from './components/Wrapper';
+import { Fragment } from 'react';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
-    <div className='App'>
+    <Fragment>
       <Navbar />
-      <h1>Hello</h1>
-    </div>
+      <Wrapper>
+        <HomePage />
+      </Wrapper>
+    </Fragment>
   );
 }
 
