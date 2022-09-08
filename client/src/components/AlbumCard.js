@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function AlbumCard({ album }) {
   return (
@@ -11,7 +12,9 @@ function AlbumCard({ album }) {
           <h3>{album.title} - 2015</h3>
           <p>{album.author}</p>
         </div>
-        <div className='wrapper__actions'>See More</div>
+        <NavLink to={`/albums/${album.slug}`} className='wrapper__actions link'>
+          See More
+        </NavLink>
       </div>
     </div>
   );
