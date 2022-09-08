@@ -1,4 +1,5 @@
 import Album from '../models/Album.js';
+import Song from '../models/Song.js';
 
 export const getAlbums = async (req, res) => {
   try {
@@ -61,8 +62,18 @@ export const updateAlbum = async (req, res) => {
 
 export const deleteAlbum = async (req, res) => {
   try {
-    const album = await Album.findOneAndRemove({ albumSlug: req.params.slug });
-    album.albumSongs = [];
+    const album = await Album.findOne({ albumSlug: req.params.slug });
+    console.log(album);
+    const songsInAlbum = await Song.find({ songAlbum: album });
+    console.log(songsInAlbum);
+
+    songsInAlbum.forEach(async (songInAlbum) => {
+      songInAlbum.songAlbum = undefined;
+      await songInAlbum.save();
+    });
+
+    await Album.deleteOne({ album });
+
     await album.save();
 
     res.status(200).json({ message: 'Album Deleted' });
