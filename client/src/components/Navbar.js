@@ -1,18 +1,22 @@
 import React from 'react';
-import { BsCollectionPlay } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { FaUserAlt } from 'react-icons/fa';
 
 function Navbar() {
   return (
     <div className='navbar'>
       <div className='navbar__wrapper'>
-        <h2>Mustier</h2>
+        <NavLink className='link' to='/'>
+          <h2>Mustier</h2>
+        </NavLink>
         <div className='wrapper__links'>
-          <div className='links__link'>
-            <BsCollectionPlay />
-          </div>
-          <div className='links__link'>
-            <BsCollectionPlay />
-          </div>
+          <NavLink to='/albums/new' className='links__link link'>
+            <AiOutlinePlus />
+          </NavLink>
+          <NavLink to='/login' className='links__link link'>
+            <FaUserAlt />
+          </NavLink>
         </div>
       </div>
     </div>
