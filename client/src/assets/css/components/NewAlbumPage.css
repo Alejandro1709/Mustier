@@ -1,0 +1,18 @@
+.new-albumPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.new-albumPage > form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.new-albumPage .form-group {
+  display: flex;
+  flex-direction: column;
+}

@@ -73,7 +73,7 @@ export const deleteSong = async (req, res) => {
   try {
     const album = await Album.findOne({ slug: req.params.slug });
 
-    const song = await Song.findOneAndRemove({ songSlug: req.params.songSlug });
+    const song = await Song.findOneAndRemove({ _id: req.params.songSlug });
     album.albumSongs.slice(album.albumSongs.indexOf(song), 1);
 
     await album.save();

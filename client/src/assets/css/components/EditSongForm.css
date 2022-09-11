@@ -1,0 +1,41 @@
+.edit-songForm {
+  background-color: white;
+}
+
+.edit-songForm__wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.edit-songForm__wrapper button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.edit-songForm__wrapper input {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.confirm-btn {
+  background-color: var(--green-400);
+}
+.confirm-btn:hover {
+  background-color: var(--green-500);
+}
+
+.dismiss-btn {
+  background-color: var(--red-400);
+}
+.dismiss-btn:hover {
+  background-color: var(--red-500);
+}
