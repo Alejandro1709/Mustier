@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function AlbumCard({ album }) {
   return (
@@ -21,3 +22,7 @@ function AlbumCard({ album }) {
 }
 
 export default AlbumCard;
+
+AlbumCard.propTypes = {
+  album: PropTypes.object,
+};
