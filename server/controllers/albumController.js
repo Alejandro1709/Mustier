@@ -141,3 +141,27 @@ export const updateAlbumSong = async (req, res) => {
 
   res.status(200).json(song);
 };
+
+// export const deleteAlbumSong = async (req, res) => {
+//   // Get Album by slug
+//   const album = await Album.findOne({ albumSlug: req.params.slug });
+//   // check if album doesnt exists
+//   if (!album) {
+//     // TODO: Complete
+//   }
+//   // if so, get albums songs
+//   const song = await Song.findOneAndRemove({
+//     _id: req.params.id,
+//     songAlbum: album,
+//   });
+
+//   album.albumSongs.splice(album.albumSongs.indexOf(song), 1);
+
+//   if (!song) {
+//     // TODO: Complete
+//   }
+
+//   await album.save();
+
+//   res.status(200).json({});
+// };
