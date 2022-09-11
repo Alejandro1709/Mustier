@@ -14,6 +14,8 @@ function NewAlbumPage() {
   const handleCreateAlbum = async (e) => {
     e.preventDefault();
 
+    if (!albumTitle || !albumAuthor || !albumReleaseDate) return;
+
     setLoading(true);
 
     const config = {

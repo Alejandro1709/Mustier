@@ -29,6 +29,8 @@ function AlbumPage() {
   const handleCreateSong = async (e) => {
     e.preventDefault();
 
+    if (!songTitle) return;
+
     setIsLoading(true);
 
     const config = {
@@ -86,7 +88,11 @@ function AlbumPage() {
           setTitle={setSongTitle}
         />
       </div>
-      <div className='album-page__footer'>Footer</div>
+      <div className='album-page__footer'>
+        <p>Edit Album</p>
+        <p>Tier List made by alejandro.js</p>
+        <p>Delete Album</p>
+      </div>
     </div>
   );
 }
