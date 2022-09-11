@@ -5,6 +5,7 @@ import SongsTable from '../components/SongsTable';
 
 function AlbumPage() {
   const [album, setAlbum] = useState({});
+  const [songTitle, setSongTitle] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -19,6 +20,38 @@ function AlbumPage() {
       );
       setAlbum(data);
       setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      setError(error.message);
+    }
+  };
+
+  const handleCreateSong = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const newSong = {
+      songTitle: songTitle,
+      songAuthor: album.albumAuthor,
+      songReleaseDate: album.albumReleaseDate,
+    };
+
+    try {
+      const { data } = await axios.post(
+        `http://localhost:2030/api/v1/albums/${slug}/songs`,
+        JSON.stringify(newSong),
+        config
+      );
+      album.albumSongs.push(data);
+      setIsLoading(false);
+      setSongTitle('');
     } catch (error) {
       setIsLoading(false);
       setError(error.message);
@@ -46,7 +79,12 @@ function AlbumPage() {
         <button>Share Tier</button>
       </div>
       <div className='album-page__body'>
-        <SongsTable songs={album.albumSongs} />
+        <SongsTable
+          songs={album.albumSongs}
+          handleCreateSong={handleCreateSong}
+          title={songTitle}
+          setTitle={setSongTitle}
+        />
       </div>
       <div className='album-page__footer'>Footer</div>
     </div>
