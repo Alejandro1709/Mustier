@@ -114,3 +114,30 @@ export const getAlbumSong = async (req, res) => {
 
   res.status(200).json(song);
 };
+
+export const updateAlbumSong = async (req, res) => {
+  const { songTitle, songDuration } = req.body;
+  // Get Album by slug
+  const album = await Album.findOne({ albumSlug: req.params.slug });
+  // check if album doesnt exists
+  if (!album) {
+    // TODO: Complete
+  }
+  // if so, get albums songs
+  const song = await Song.findOneAndUpdate(
+    { _id: req.params.id, songAlbum: album },
+    {
+      songTitle,
+      songDuration,
+    },
+    {
+      new: true,
+    }
+  );
+
+  if (!song) {
+    // TODO: Complete
+  }
+
+  res.status(200).json(song);
+};

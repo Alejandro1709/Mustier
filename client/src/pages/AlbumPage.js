@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, useSearchParams } from 'react-router-dom';
 import Modal from '../components/Modal';
 import axios from 'axios';
 import SongsTable from '../components/SongsTable';
@@ -11,6 +11,7 @@ function AlbumPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isEditingSong, setIsEditingSong] = useState(false);
   const [error, setError] = useState('');
+  const [, setSearchParams] = useSearchParams();
 
   const { slug } = useParams();
 
@@ -63,6 +64,9 @@ function AlbumPage() {
     }
   };
 
+  const handleAddSongToParams = (song) => {
+    setSearchParams({ songId: song });
+  };
   useEffect(() => {
     fetchAlbumBySlug(slug);
 
@@ -72,13 +76,13 @@ function AlbumPage() {
   }, [slug]);
 
   if (isLoading) return <p>Loading album...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className='album-page container'>
       {isEditingSong && (
         <Modal>
-          <SongEditForm />
+          <SongEditForm handleEditSong={setIsEditingSong} />
         </Modal>
       )}
       <div className='album-page__header'>
@@ -95,6 +99,7 @@ function AlbumPage() {
           title={songTitle}
           setTitle={setSongTitle}
           handleEditSong={setIsEditingSong}
+          handleAddSongToParams={handleAddSongToParams}
         />
       </div>
       <div className='album-page__footer'>

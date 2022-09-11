@@ -7,6 +7,7 @@ function SongsTable({
   title,
   setTitle,
   handleEditSong,
+  handleAddSongToParams,
 }) {
   return (
     <Fragment>
@@ -19,6 +20,7 @@ function SongsTable({
               num={idx}
               song={song}
               onSongEdition={handleEditSong}
+              handleAddSongToParams={handleAddSongToParams}
             />
           ))}
       </div>
