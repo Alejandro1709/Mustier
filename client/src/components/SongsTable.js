@@ -1,14 +1,25 @@
 import React, { Fragment } from 'react';
 import SongRow from './SongRow';
 
-function SongsTable({ songs, handleCreateSong, title, setTitle }) {
+function SongsTable({
+  songs,
+  handleCreateSong,
+  title,
+  setTitle,
+  handleEditSong,
+}) {
   return (
     <Fragment>
       <div className='body__list'>
         {songs &&
           songs.length > 0 &&
           songs.map((song, idx) => (
-            <SongRow key={song._id} num={idx} song={song} />
+            <SongRow
+              key={song._id}
+              num={idx}
+              song={song}
+              onSongEdition={handleEditSong}
+            />
           ))}
       </div>
       <form onSubmit={handleCreateSong} className='body__form'>

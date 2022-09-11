@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SongRow({ num, song }) {
+function SongRow({ num, song, onSongEdition }) {
   return (
     <div className='list__track'>
       <div className='track__left'>
@@ -11,8 +11,8 @@ function SongRow({ num, song }) {
       </div>
       <div className='track__right'>
         <b>{String(song.songDuration).replace('.', ':')}</b>
-        <span>Edit</span>
-        <span>Delete</span>
+        <button onClick={() => onSongEdition(true)}>Edit</button>
+        <button>Delete</button>
         <span>Reorder</span>
       </div>
     </div>

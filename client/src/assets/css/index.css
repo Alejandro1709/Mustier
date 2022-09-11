@@ -5,7 +5,9 @@
 @import url('./global/utils.css');
 @import url('./components/Navbar.css');
 @import url('./components/Wrapper.css');
+@import url('./components/Modal.css');
 @import url('./components/Alert.css');
+@import url('./components/EditSongForm.css');
 @import url('./components/HomePage.css');
 @import url('./components/AlbumPage.css');
 @import url('./components/NewAlbumPage.css');

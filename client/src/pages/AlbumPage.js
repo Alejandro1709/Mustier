@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
+import Modal from '../components/Modal';
 import axios from 'axios';
 import SongsTable from '../components/SongsTable';
+import SongEditForm from '../components/SongEditForm';
 
 function AlbumPage() {
   const [album, setAlbum] = useState({});
   const [songTitle, setSongTitle] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isEditingSong, setIsEditingSong] = useState(false);
   const [error, setError] = useState('');
 
   const { slug } = useParams();
@@ -73,6 +76,11 @@ function AlbumPage() {
 
   return (
     <div className='album-page container'>
+      {isEditingSong && (
+        <Modal>
+          <SongEditForm />
+        </Modal>
+      )}
       <div className='album-page__header'>
         <NavLink className='link-b' to='/'>
           Back
@@ -86,10 +94,11 @@ function AlbumPage() {
           handleCreateSong={handleCreateSong}
           title={songTitle}
           setTitle={setSongTitle}
+          handleEditSong={setIsEditingSong}
         />
       </div>
       <div className='album-page__footer'>
-        <p>Edit Album</p>
+        <button>Edit Album</button>
         <p>Tier List made by alejandro.js</p>
         <p>Delete Album</p>
       </div>
