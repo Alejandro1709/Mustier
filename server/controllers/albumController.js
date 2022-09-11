@@ -13,7 +13,9 @@ export const getAlbums = async (req, res) => {
 
 export const getAlbum = async (req, res) => {
   try {
-    const album = await Album.findOne({ albumSlug: req.params.slug });
+    const album = await Album.findOne({ albumSlug: req.params.slug }).populate(
+      'albumSongs'
+    );
     res.status(200).json(album);
   } catch (error) {
     console.error(error);

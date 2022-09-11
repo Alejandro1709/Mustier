@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import axios from 'axios';
+import SongsTable from '../components/SongsTable';
 
 function AlbumPage() {
   const [album, setAlbum] = useState({});
@@ -36,8 +37,18 @@ function AlbumPage() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
-      <h1>{album.albumTitle} Page</h1>
+    <div className='album-page container'>
+      <div className='album-page__header'>
+        <NavLink className='link-b' to='/'>
+          Back
+        </NavLink>
+        <h2>{album.albumTitle}</h2>
+        <button>Share Tier</button>
+      </div>
+      <div className='album-page__body'>
+        <SongsTable songs={album.albumSongs} />
+      </div>
+      <div className='album-page__footer'>Footer</div>
     </div>
   );
 }
