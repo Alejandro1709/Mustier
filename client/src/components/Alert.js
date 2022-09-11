@@ -23,8 +23,10 @@ export default Alert;
 
 Alert.propTypes = {
   type: PropTypes.string,
+  children: PropTypes.string,
 };
 
 Alert.defaultProps = {
   type: '',
+  children: 'Default Alert',
 };

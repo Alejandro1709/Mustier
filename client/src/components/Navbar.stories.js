@@ -9,7 +9,7 @@ export default {
 
 const Template = (args) => (
   <BrowserRouter>
-    <Navbar {...args} />;
+    <Navbar {...args} />
   </BrowserRouter>
 );
 
