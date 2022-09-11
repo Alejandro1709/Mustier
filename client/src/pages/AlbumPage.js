@@ -9,7 +9,9 @@ function AlbumPage() {
   const [album, setAlbum] = useState({});
   const [songTitle, setSongTitle] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [albumNewTitle, setAlbumNewTitle] = useState('');
   const [isEditingSong, setIsEditingSong] = useState(false);
+  const [isEditingAlbum, setIsEditingAlbum] = useState(false);
   const [error, setError] = useState('');
   const [, setSearchParams] = useSearchParams();
 
@@ -67,6 +69,36 @@ function AlbumPage() {
   const handleAddSongToParams = (song) => {
     setSearchParams({ songId: song });
   };
+
+  const handleEditAlbum = async (e) => {
+    e.preventDefault();
+
+    if (!albumNewTitle) return;
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    setIsLoading(true);
+
+    try {
+      const { data } = await axios.patch(
+        `http://localhost:2030/api/v1/albums/${slug}`,
+        JSON.stringify({ albumNewTitle }),
+        config
+      );
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+    }
+  };
+
+  const handleDeleteAlbum = () => {
+    console.log('Delete');
+  };
+
   useEffect(() => {
     fetchAlbumBySlug(slug);
 
@@ -85,13 +117,29 @@ function AlbumPage() {
           <SongEditForm handleEditSong={setIsEditingSong} />
         </Modal>
       )}
-      <div className='album-page__header'>
-        <NavLink className='link-b' to='/'>
-          Back
-        </NavLink>
-        <h2>{album.albumTitle}</h2>
-        <button>Share Tier</button>
-      </div>
+      {isEditingAlbum ? (
+        <form onSubmit={handleEditAlbum} className='album-page__header'>
+          <button type='button' onClick={() => setIsEditingAlbum(false)}>
+            Cancel
+          </button>
+          <input
+            name='albumTitle'
+            type='text'
+            placeholder={album.albumTitle}
+            value={albumNewTitle}
+            onChange={(e) => setAlbumNewTitle(e.target.value)}
+          />
+          <button type='submit'>Update</button>
+        </form>
+      ) : (
+        <div className='album-page__header'>
+          <NavLink className='link-b' to='/'>
+            Back
+          </NavLink>
+          <h2>{album.albumTitle}</h2>
+          <button>Share Tier</button>
+        </div>
+      )}
       <div className='album-page__body'>
         <SongsTable
           songs={album.albumSongs}
@@ -103,9 +151,9 @@ function AlbumPage() {
         />
       </div>
       <div className='album-page__footer'>
-        <button>Edit Album</button>
+        <button onClick={() => setIsEditingAlbum(true)}>Edit Album</button>
         <p>Tier List made by alejandro.js</p>
-        <p>Delete Album</p>
+        <button onClick={handleDeleteAlbum}>Delete Album</button>
       </div>
     </div>
   );

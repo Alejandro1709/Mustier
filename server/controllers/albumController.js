@@ -51,7 +51,6 @@ export const updateAlbum = async (req, res) => {
         albumReleaseDate,
       },
       {
-        runValidators: true,
         new: true,
       }
     );
