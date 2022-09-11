@@ -1,7 +1,7 @@
+import { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Wrapper from './components/Wrapper';
-import { Fragment } from 'react';
 import HomePage from './pages/HomePage';
 import AlbumPage from './pages/AlbumPage';
 
