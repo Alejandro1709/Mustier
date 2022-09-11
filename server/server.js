@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use('/api/v1/albums', albumRoutes);
-app.use('/api/v1/songs', songRoutes);
+// app.use('/api/v1/songs', songRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello API');

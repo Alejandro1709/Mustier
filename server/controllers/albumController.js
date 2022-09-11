@@ -84,3 +84,33 @@ export const deleteAlbum = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+export const getAlbumSongs = async (req, res) => {
+  // Get Album by slug
+  const album = await Album.findOne({ albumSlug: req.params.slug });
+  // check if album doesnt exists
+  if (!album) {
+    // TODO: Complete
+  }
+  // if so, get albums songs
+  const songs = await Song.find({ songAlbum: album });
+  console.log(songs);
+  res.status(200).json(songs);
+};
+
+export const getAlbumSong = async (req, res) => {
+  // Get Album by slug
+  const album = await Album.findOne({ albumSlug: req.params.slug });
+  // check if album doesnt exists
+  if (!album) {
+    // TODO: Complete
+  }
+  // if so, get albums songs
+  const song = await Song.findOne({ _id: req.params.id, songAlbum: album });
+
+  if (!song) {
+    // TODO: Complete
+  }
+
+  res.status(200).json(song);
+};
